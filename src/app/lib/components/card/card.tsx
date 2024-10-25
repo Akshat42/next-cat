@@ -1,10 +1,9 @@
 "use client";
-
-import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./card.module.css";
 import cloudinaryLoader from "../../util/cloudinary-loader";
 import { grayPlaceholder } from "../../util/blur-data-url";
+import { useImageOverlay } from "../../hooks/useKyedownClick";
 
 interface CardProps {
   title: string;
@@ -13,26 +12,14 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ title, imageUrl, altText }) => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const { isOverlayOpen, openOverlay, closeOverlay } = useImageOverlay();
 
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      setIsOverlayOpen(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isOverlayOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOverlayOpen, handleKeyDown]);
-
+  function handleOpenOverlay() {
+    openOverlay();
+  }
   return (
     <>
-      <div className={styles.card} onClick={() => setIsOverlayOpen(true)}>
+      <div className={styles.card} onClick={handleOpenOverlay}>
         <h2 className={styles.header}>{title}</h2>
         <div className={styles.cardContainer}>
           <Image
@@ -46,13 +33,11 @@ export const Card: React.FC<CardProps> = ({ title, imageUrl, altText }) => {
             placeholder="blur"
             blurDataURL={grayPlaceholder}
             sizes="33vw"
-            layout="responsive"
-            objectFit="cover"
           />
         </div>
       </div>
       {isOverlayOpen && (
-        <div className={styles.overlay} onClick={() => setIsOverlayOpen(false)}>
+        <div className={styles.overlay} onClick={handleOpenOverlay}>
           <div className={styles.overlayContent}>
             <Image
               src={imageUrl}
