@@ -26,7 +26,6 @@ const Cats: React.FC = () => {
     if (!movedCard) return;
 
     if (sourceRow === targetRow) {
-      // Reorder within the same row
       const updatedCards = sourceCards.filter((card) => card.id !== cardId);
       const dropIndex = targetCards.findIndex(
         (card) => card.id === (e.target as HTMLElement).id
@@ -39,7 +38,6 @@ const Cats: React.FC = () => {
         setSecondRow(updatedCards);
       }
     } else {
-      // Move card between rows
       const updatedSourceCards = sourceCards.filter(
         (card) => card.id !== cardId
       );
