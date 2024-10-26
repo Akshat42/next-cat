@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 # Tech used
 
-I am more fronted-foucued so have implemented only the frontend part. I have built it using NextJs, Cloudinary and open-props library
+I am more fronted-fousued so have implemented only the frontend part. I have built it using NextJs, Cloudinary and open-props library
 
-open-props -> have used it because it provides CSS standard variabled and color out of the box.
+open-props -> have used it because it provides CSS standard variables and colors out of the box.
 Cloudinary -> For image optimization based on the screen size
 
 # Thought Process
