@@ -4,7 +4,7 @@ import styles from "./card.module.css";
 import cloudinaryLoader from "../../util/cloudinary-loader";
 import { grayPlaceholder } from "../../util/blur-data-url";
 import { useImageOverlay } from "../../hooks/useKyedownClick";
-import CardModal from "../card-modal/card-modal";
+import dynamic from "next/dynamic";
 
 interface CardProps {
   title: string;
@@ -23,6 +23,11 @@ export const Card: React.FC<CardProps> = ({
   function handleOpenOverlay() {
     openOverlay();
   }
+
+  const CardModal = dynamic(
+    () => import("@/app/lib/components/card-modal/card-modal"),
+    { ssr: false }
+  );
 
   return (
     <>
