@@ -1,0 +1,9 @@
+.cardRow {
+  display: flex;
+  gap: var(--size-3);
+  margin-bottom: var(--size-3);
+  min-height: var(--size-14);
+  border: var(--brown-12) var(--border-size-1) solid;
+  padding: var(--size-3);
+  border-radius: var(--radius-3);
+}

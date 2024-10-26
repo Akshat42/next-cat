@@ -9,21 +9,28 @@ interface CardProps {
   title: string;
   imageUrl: string;
   altText: string;
+  onDragStart: (e: React.DragEvent) => void;
 }
 
-export const Card: React.FC<CardProps> = ({ title, imageUrl, altText }) => {
-  const { isOverlayOpen, openOverlay, closeOverlay } = useImageOverlay();
-
+export const Card: React.FC<CardProps> = ({
+  title,
+  imageUrl,
+  altText,
+  onDragStart,
+}) => {
+  const { isOverlayOpen, openOverlay } = useImageOverlay();
   function handleOpenOverlay() {
     openOverlay();
   }
+
   return (
     <>
-      <div className={styles.card} onClick={handleOpenOverlay}>
+      <div className={styles.card} draggable onDragStart={onDragStart}>
         <h2 className={styles.header}>{title}</h2>
         <div className={styles.cardContainer}>
           <Image
             className={styles.image}
+            onClick={handleOpenOverlay}
             src={imageUrl}
             alt={altText}
             quality={100}
