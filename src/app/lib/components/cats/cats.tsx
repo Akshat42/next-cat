@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import data from "../../constants/data";
-import { Card } from "../card/card";
 import styles from "./cats.module.css";
 import CardRow from "../card-row/card-row";
 
