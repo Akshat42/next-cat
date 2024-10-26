@@ -4,6 +4,7 @@ import styles from "./card.module.css";
 import cloudinaryLoader from "../../util/cloudinary-loader";
 import { grayPlaceholder } from "../../util/blur-data-url";
 import { useImageOverlay } from "../../hooks/useKyedownClick";
+import CardModal from "../card-modal/card-modal";
 
 interface CardProps {
   title: string;
@@ -44,20 +45,11 @@ export const Card: React.FC<CardProps> = ({
         </div>
       </div>
       {isOverlayOpen && (
-        <div className={styles.overlay} onClick={handleOpenOverlay}>
-          <div className={styles.overlayContent}>
-            <Image
-              src={imageUrl}
-              alt={altText}
-              sizes="80vw"
-              fill
-              objectFit="contain"
-              loader={cloudinaryLoader}
-              placeholder="blur"
-              blurDataURL={grayPlaceholder}
-            />
-          </div>
-        </div>
+        <CardModal
+          imageUrl={imageUrl}
+          altText={altText}
+          handleOpenOverlay={handleOpenOverlay}
+        />
       )}
     </>
   );
